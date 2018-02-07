@@ -1,0 +1,79 @@
+* Ideas for a Forge 2.0
+
+/Codename: Prefab/[fn:1]
+
+** Issues
+
+/What the are current issues with Forge?/
+
+*** Forge module versions vs. "real" (git upstream) versions
+
+Quite a few modules on the Forge lags behind their Github counterparts. Some
+modules have multiple active forks; others have their Forge versions abandoned
+and an active fork can only be found by scouring the Github network graph,
+through external search engines etc.
+
+*** Authenticity/security
+
+There's currently no support for verifying modules, asserting that the changes
+(commits, tags) are made by the actual maintainers and there's no guidelines for
+under which circumstances a maintainer can hand over a module to a new
+maintainer.
+
+**** Git signing
+
+Signed git tags should be highlighted.
+
++ Once a module has had a release with a signed tag it should be (close to)
+  impossible to disable signing for the particular module; forks and tags are
+  both cheap[fn:2]
++ Forge 2.0 should verify signed tags when retrieving modules and continously
+  monitor key servers to make sure keys are up to date and modules signed with
+  revoked keys have proper notifications for users
+
+**** Avoiding hostile takeovers
+
+
+*** Different providers
+
+ Not necessarily tied to Github, but could live on Gitlab, own Git installations
+ etc.
+
+** Ideas
+
+ /Which functionality would be like in a Forge 2.0?/
+
+*** Forge as a CI provider
+
+ Forge could work as a one-stop-shop for providing Puppet module authors with CI
+ pipelines, error reporting, testing against different Puppet versions etc.
+
+*** Forge as a "vetter" of modules
+
+ "Grades" modules based on:
+
+ + adherance to style guidelines
+ + usage of data types
+ + percentage of test coverage
+
+** Users; how do they work?
+
+ /Which ways do the users currently use the Forge, and which workflows should be
+ supported in order to keep everyone happy?/
+
+*** module install
+
+*** download from forge
+
+*** git clone from upstream
+
+
+* Footnotes
+
+[fn:2] Though forks create more mental overhead than tags, modules should be
+forked rather than continuing development by allowing new maintainers to take
+over without the explicit permission of the previous maintainer, except in
+extraordinary circumstances.
+
+[fn:1] Alright, that's the best I can come up with on a whim. Feel free to give
+it a better name!
