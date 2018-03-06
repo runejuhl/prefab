@@ -13,6 +13,14 @@ modules have multiple active forks; others have their Forge versions abandoned
 and an active fork can only be found by scouring the Github network graph,
 through external search engines etc.
 
+**** Proposal(s):
+
++ The forge could maybe enable a widget in the forge module page showing the
+  git network graph, thus informing visitors of the activity and variations of
+  modules in the ecosystem. BUt i'm no web dev, no idea if such a "plugin" or
+  "module" for <placeYourCmsHere> exists that fits in the forge. 
+
+
 *** Authenticity/security
 
 There's currently no support for verifying modules, asserting that the changes
@@ -31,13 +39,37 @@ Signed git tags should be highlighted.
   monitor key servers to make sure keys are up to date and modules signed with
   revoked keys have proper notifications for users
 
+***** Proposal(s):
+
++ To be discussed with some of their people of infrastructure and monitoring 
+  team. It involves setting up monitoring entries to those keyserver URL's and 
+  use this information to match the usage of this key it to the list of users
+  that downloaded/use the module. This can be achieved by expanding current
+  capabilities of the puppetlabs.com user accounts. Only registered users could
+  really benefit from this though. It also gives a better "popcon" statistics 
+  usage. 
++ It might be also implemented in the puppet server itself. like any linux 
+  distro's way of gathering software usage statistics (like debian's "popcon")
+  the puppet server could have a feature where modules downloaded directly from
+   the forge, send some anonymous statistics about the module usage.  
+  This can make use of the puppet server's administrator e-mail as identifier.
+  Enabling or disabling this feature could be something trivial as:
+  
+  "puppet resource forge_module_send-stats enable/disable" or something like 
+  that
+
 **** Avoiding hostile takeovers
+
+[fn:3] no ideas yet
 
 
 *** Different providers
 
  Not necessarily tied to Github, but could live on Gitlab, own Git installations
  etc.
+
++ +1 on this, but, it will increase complexity and workload for backend 
+  developers.
 
 ** Ideas
 
@@ -47,6 +79,7 @@ Signed git tags should be highlighted.
 
  Forge could work as a one-stop-shop for providing Puppet module authors with CI
  pipelines, error reporting, testing against different Puppet versions etc.
+ [fn:4]
 
 *** Forge as a "vetter" of modules
 
@@ -55,6 +88,7 @@ Signed git tags should be highlighted.
  + adherance to style guidelines
  + usage of data types
  + percentage of test coverage
+ [fn:5]
 
 ** Users; how do they work?
 
@@ -69,6 +103,20 @@ Signed git tags should be highlighted.
 
 
 * Footnotes
+
+[fn:6]
+
+[fn:5] this already happens, see below.
+
+[fn:4] I believe this is more a really "nice to have" but not really the job
+for puppetlabs. Puppetlabs would benefit from investing time and resources in 
+the vetting of contributed modules, and simply give it a quality score.
+The score however would be ebtter by making use of graphical labels/badges so 
+it gets faster visibility instead of another bold printed number
+
+[fn:3] Once the general idea of key monitoring is accepted, it will depend on 
+the implementation of it, if done well, it actually will eliminate this 
+security issue.
 
 [fn:2] Though forks create more mental overhead than tags, modules should be
 forked rather than continuing development by allowing new maintainers to take
